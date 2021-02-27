@@ -1,0 +1,6 @@
+# scratch 가상환경에 있는 파일 무시
+imageA/
+.vscode/
+
+# 이미지 파일 제외
+*.jpg
