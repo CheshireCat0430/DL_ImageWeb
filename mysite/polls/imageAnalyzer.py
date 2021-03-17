@@ -10,6 +10,7 @@ import os
 model = VGG16(weights = 'imagenet')
 image_w = 224
 image_h = 224
+result = np.empty(20, object)
 
 def imagePredict(image) :
     image = '.' + image
@@ -22,5 +23,9 @@ def imagePredict(image) :
 
     yhat = model.predict(x)
     label = decode_predictions(yhat, top=20)
-    return label[0]
+    for i in range(0, 20) :
+        result[i] = str(i+1) + ". 예측 결과 : " + str(label[0][i][2]*100) + "% 확률로 "+ label[0][i][1] + "입니다." 
+    print(label)
+    print(result)
+    return result
     

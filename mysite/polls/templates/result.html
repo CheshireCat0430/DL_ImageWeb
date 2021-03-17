@@ -3,12 +3,19 @@
 {% block content %}
 <body>
     <h3>이미지</h3>
-    {% if image.imageInfo %}
-        <img src="{{ images.imageInfo.url }}" width="500" height="500">
+    {% if image.image_data %}
+        <img src="{{ image.image_data.url }}" width=100% height=auto>
     {% endif %}
     <h3>분석 결과</h3>
+    <script>
+        for(var i = 0; i < 20; i++){
+            document.write(label[i])
+        }
+    </script>
     {% for predict in label %} 
+    <ul type=none>
         <li>{{ predict }}</li>
+    </ul>
     {% endfor %}
 </body>
 {% endblock %}

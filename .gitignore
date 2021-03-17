@@ -1,6 +1,10 @@
 # scratch 가상환경에 있는 파일 무시
-imageA/
+venv/
 .vscode/
 
-# 이미지 파일 제외
-*.jpg
+# history 제외
+*.pyc
+*~
+__pycache__
+db.sqlite3
+mysite/db.sqlite3
