@@ -11,6 +11,9 @@
         <div class="card-body">
           <h5 class="card-title">{{ image.image_title }}</h5>
           <p class="card-text">{{ image.image_pub_date | date:"Y-m-d" }}</p>
+          <a href="{% url 'downloads' image.id %}">다운로드</a>
+          <br>
+          <a href="{% url 'delete' image.id %}">삭제하기</a>
         </div>
       </div>
     </div>

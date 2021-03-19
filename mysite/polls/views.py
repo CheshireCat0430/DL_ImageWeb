@@ -5,6 +5,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Images_info
 from .imageAnalyzer import imagePredict
+import os
+import mimetypes
 
 def home(request):
     return render(request, 'home.html')
@@ -26,3 +28,19 @@ def result(request):
 def history(request):
     images = Images_info.objects.filter(author=request.user)
     return render(request, 'history.html', {'images' : images})
+
+def delete(request, image_id) :
+    image = Images_info.objects.get(id=image_id)
+    image.delete()
+    return redirect('history')
+
+def downloads(request, image_id) :
+    image = Images_info.objects.get(id=image_id)
+    image_url = image.image_data.url
+    image_name = image_url[14:]
+    image_type = mimetypes.guess_type(image_name)
+    with open('.'+image_url, 'rb') as img :
+        response = HttpResponse(img.read(), content_type=image_type[0])
+        response["Content-Disposition"] = "attachment; filename" + os.path.basename(image_url)
+        return response
+    return redirect('history')
