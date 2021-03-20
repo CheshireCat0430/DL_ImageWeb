@@ -1,13 +1,13 @@
 import tensorflow as tf
 from keras import models, layers
-from keras.applications import VGG16
-from keras.applications.vgg16 import decode_predictions
+from keras.applications import ResNet50
+from keras.applications.resnet50 import decode_predictions
 import numpy as np
 from PIL import Image
 import sys
 import os
 
-model = VGG16(weights = 'imagenet')
+model = ResNet50(weights = 'imagenet')
 image_w = 224
 image_h = 224
 result = np.empty(20, object)
